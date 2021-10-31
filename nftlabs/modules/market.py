@@ -65,8 +65,16 @@ class MarketModule(BaseModule):
             self.get_transact_opts()
         )
 
+
+        # todo: 
+        # trying to get event data throws the following error:
+        # eth_abi.exceptions.NoEntriesFound: No matching entries for 'tuple' in decoder registry
+        # more info:
+        # https://github.com/ethereum/web3.py/pull/1484
+        # throws the same error while manually trying to decode it from the get_event_data utility too
         receipt = self.execute_tx(tx)
-        result = self.__abi_module.get_new_listing_event(tx_hash=receipt.transactionHash.hex())
+
+        # result = self.__abi_module.get_new_listing_event(tx_hash=receipt.transactionHash.hex())
         # listing_id = result[0]['args']['token_id']
         # return self.get(listing_id)
 
